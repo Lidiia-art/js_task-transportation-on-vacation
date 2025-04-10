@@ -10,16 +10,17 @@ function calculateRentalCost(days) {
   const SHORT_TERM = 3;
   const SHORT_TERM_DISCOUNT = 20;
 
-  const total = days * PRICE_PER_DAY;
-  let discount = 0;
+  const basePrice = days * PRICE_PER_DAY;
 
   if (days >= LONG_TERM) {
-    discount = LONG_TERM_DISCOUNT;
-  } else if (days >= SHORT_TERM) {
-    discount = SHORT_TERM_DISCOUNT;
+    return basePrice - LONG_TERM_DISCOUNT;
   }
 
-  return total - discount;
+  if (days >= SHORT_TERM) {
+    return basePrice - SHORT_TERM_DISCOUNT;
+  }
+
+  return basePrice;
 }
 
 module.exports = calculateRentalCost;
